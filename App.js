@@ -26,6 +26,35 @@ const NavContainer = () => {
   );
 };
 
+const RestaurantCard = () => {
+  return (
+    <div className="restaurant-card">
+      <img
+        className="restaurant-card-image"
+        src="https://ik.imagekit.io/awwybhhmo/satellite_images/chinese/beyondmenu/hero/2.jpg?tr=w-3840,q-50"
+      />
+      <h3>Kimchy</h3>
+      <h5>Chinese, Asian</h5>
+    </div>
+  );
+};
+
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">
+
+      </div>
+      
+
+
+      <div className="restaurant-container">
+        <RestaurantCard />
+      </div>
+    </div>
+  );
+};
+
 const Header = () => {
   return (
     <div className="header">
@@ -38,6 +67,7 @@ const Header = () => {
 const AppContainer = () => (
   <div id="app">
     <Header />
+    <Body />
   </div>
 );
 
