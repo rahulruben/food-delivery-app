@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Restaurants } from "./mocks/data";
 
 /**
  * Logo Component
  * Displays the logo image for the app.
- * 
+ *
  * @returns {JSX.Element} A logo element wrapped in a div.
  */
 const Logo = () => {
@@ -22,7 +23,7 @@ const Logo = () => {
 /**
  * NavContainer Component
  * Renders the navigation items such as Home, About Us, Contact Us, and Cart.
- * 
+ *
  * @returns {JSX.Element} A div containing an unordered list of navigation items.
  */
 const NavContainer = () => {
@@ -41,10 +42,11 @@ const NavContainer = () => {
 /**
  * RestaurantCard Component
  * Displays a card with restaurant details, including an image and description.
- * 
+ *
  * @returns {JSX.Element} A div representing a restaurant card.
  */
-const RestaurantCard = () => {
+const RestaurantCard = ({ restaurant }) => {
+  const { name, cuisine, rating, delivery_time } = restaurant;
   return (
     <div className="restaurant-card">
       <img
@@ -52,8 +54,10 @@ const RestaurantCard = () => {
         src="https://ik.imagekit.io/awwybhhmo/satellite_images/chinese/beyondmenu/hero/2.jpg?tr=w-3840,q-50"
         alt="Restaurant"
       />
-      <h3>Kimchy</h3>
-      <h5>Chinese, Asian</h5>
+      <h3>{name}</h3>
+      <h5>{cuisine}</h5>
+      <h5>{rating} stars</h5>
+      <h5>{delivery_time}</h5>
     </div>
   );
 };
@@ -61,7 +65,7 @@ const RestaurantCard = () => {
 /**
  * Body Component
  * Contains the main content of the page, including the search bar and the restaurant cards.
- * 
+ *
  * @returns {JSX.Element} A div that represents the main body content of the app.
  */
 const Body = () => {
@@ -73,7 +77,9 @@ const Body = () => {
         </label>
       </div>
       <div className="restaurant-container">
-        <RestaurantCard />
+        {Restaurants.data.map((restaurant) => (
+          <RestaurantCard key={restaurant.name} restaurant={restaurant} />
+        ))}
       </div>
     </div>
   );
@@ -82,7 +88,7 @@ const Body = () => {
 /**
  * Header Component
  * Displays the logo and navigation items at the top of the app.
- * 
+ *
  * @returns {JSX.Element} A div that contains both the Logo and NavContainer components.
  */
 const Header = () => {
@@ -97,7 +103,7 @@ const Header = () => {
 /**
  * AppContainer Component
  * The main app container that holds the Header and Body components.
- * 
+ *
  * @returns {JSX.Element} The root component containing Header and Body.
  */
 const AppContainer = () => (
