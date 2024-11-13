@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { Restaurants } from "../../mocks/data";
+import { useState } from "react";
 
 /**
  * Body Component
@@ -8,15 +9,21 @@ import { Restaurants } from "../../mocks/data";
  * @returns {JSX.Element} A div that represents the main body content of the app.
  */
 const Body = () => {
+  const [listOfRestaurants, setListOfRestaurants] = useState(Restaurants);
+
+  const filterHighRatedRestuarant = () => {
+    setListOfRestaurants({
+      data: listOfRestaurants.data?.filter((rest) => rest.name > "Pasta Paradise"),
+    });
+  };
   return (
     <div className="body">
-      <div className="search">
-        <label>
-          <input type="text" placeholder="Type to search..." />
-        </label>
-      </div>
+      <div className="search"></div>
+      <button className="filter-btn" onClick={filterHighRatedRestuarant}>
+        Top Rated Restaurant
+      </button>
       <div className="restaurant-container">
-        {Restaurants.data.map((restaurant) => (
+        {listOfRestaurants.data.map((restaurant) => (
           <RestaurantCard key={restaurant.name} restaurant={restaurant} />
         ))}
       </div>
