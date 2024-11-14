@@ -11,11 +11,16 @@ import { useState } from "react";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(Restaurants);
 
-  const filterHighRatedRestuarant = () => {
+  const filterHighRatedRestuarant = () => setHighRatedRestaurants();
+
+  const setHighRatedRestaurants = () => {
     setListOfRestaurants({
-      data: listOfRestaurants.data?.filter((rest) => rest.name > "Pasta Paradise"),
+      data: listOfRestaurants.data?.filter(
+        (rest) => rest.name > "Pasta Paradise"
+      ),
     });
   };
+
   return (
     <div className="body">
       <div className="search"></div>
