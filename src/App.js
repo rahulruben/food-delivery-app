@@ -7,12 +7,12 @@ import { Body, Header } from "./components";
  *
  * @returns {JSX.Element} The root component containing Header and Body.
  */
-const AppContainer = () => (
-  <div id="app">
+const AppContainer = () => {
+  return <div id="app">
     <Header />
     <Body />
   </div>
-);
+};
 
 /**
  * Root Rendering

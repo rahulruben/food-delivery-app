@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { Restaurants } from "../../mocks/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Body Component
@@ -12,6 +12,22 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(Restaurants);
 
   const filterHighRatedRestuarant = () => setHighRatedRestaurants();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const url = "";
+    if (url) {
+      const data = await fetch();
+
+      const json = await data.json();
+      if (json) {
+        setListOfRestaurants(json);
+      }
+    }
+  };
 
   const setHighRatedRestaurants = () => {
     setListOfRestaurants({
