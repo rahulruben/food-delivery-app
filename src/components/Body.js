@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { Restaurants } from "../../mocks/data";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 /**
  * Body Component
@@ -9,7 +10,7 @@ import { useEffect, useState } from "react";
  * @returns {JSX.Element} A div that represents the main body content of the app.
  */
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState(Restaurants);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
   const filterHighRatedRestuarant = () => setHighRatedRestaurants();
 
@@ -26,6 +27,11 @@ const Body = () => {
       if (json) {
         setListOfRestaurants(json);
       }
+    } else {
+      setTimeout(() => {
+        // Mocking a delay to render
+        setListOfRestaurants(Restaurants);
+      }, 1000);
     }
   };
 
@@ -37,6 +43,10 @@ const Body = () => {
     });
   };
 
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
+  }
+
   return (
     <div className="body">
       <div className="search"></div>
@@ -44,7 +54,7 @@ const Body = () => {
         Top Rated Restaurant
       </button>
       <div className="restaurant-container">
-        {listOfRestaurants.data.map((restaurant) => (
+        {listOfRestaurants.data?.map((restaurant) => (
           <RestaurantCard key={restaurant.name} restaurant={restaurant} />
         ))}
       </div>

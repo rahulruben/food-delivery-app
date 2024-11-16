@@ -73,3 +73,14 @@
     margin: 5px;
     cursor: pointer;
   }
+
+  .shimmer-container {
+    display: flex;
+    flex: wrap;
+  }
+  .shimmer-card {
+    height: 200px;
+    width: 300px;
+    background-color: #dedede;
+    margin: 10px;
+  }
